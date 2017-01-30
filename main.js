@@ -34,7 +34,6 @@ var guessButton = document.getElementById('guessButton');
       randomWordsContainer.appendChild(underscore); //selects underscores class and sends each span tag to dom to put underscores in
     }
   }
-  console.log(underscoreDisplay());
 
 //display number of turns remaining
 var guessTotal = 8;
