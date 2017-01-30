@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Word Game</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <h1>Hang Man</h1>
+
+  <div class = "container">
+    <div class="side-container">
+      <div class="guesses">Guesses Remaining: <span id="numGuesses">8</span>
+      </div>
+        <div class="input-area">
+          <div class="random-word-container">
+
+          </div>
+          <input class="letter" max-length="1" type="text" placeholder="Guess A Letter">
+          <input id="guessButton" class="guess" type="submit" name="guess" value="Guess">
+
+        </div>
+      </div>
+
+      <div class="side-container">
+        <div class="container-title">Guessed Letters</div>
+          <div id="wrong-letters" class="input-area">
+
+          </div>
+        </div>
+      </div>
+
+    <!-- </div>
+
+
+    </div>
+
+    <ul id="letters"></ul>
+    <p id="man"></p>
+    <p id="output" class="output"></p> -->
+
+    <script type="text/javascript" src="common-words.js"> </script>
+    <script type="text/javascript"  src="main.js"></script>
+  </body>
+</html>
