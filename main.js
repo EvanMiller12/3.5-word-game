@@ -1,54 +1,87 @@
 (function() {
   'use strict';
 
-var randomWordsContainer = document.querySelector('.random-word-container');
-var guesses = document.querySelector('.guesses');
-var numGuesses = document.getElementById("numGuesses");
-var guess = document.querySelector('.guess');
-var guessButton = document.getElementById('guessButton');
-
-
-//pic a random word with 3 plus characters
-
-//filters through common words array
+  //returns new array of words with char greater than 3
   var threePlusChar = commonWords.filter(function(word) {
-//returns new array of words with char greater than 3
-    if(word.length > 3){
+    if (word.length > 3){
       return word;
     }
   });
-//picks random word from threePlusChar array
+
+  //picks random word from threePlusChar array
   function pickRandomWord(){
     var randWord = threePlusChar[Math.floor(Math.random() * threePlusChar.length)];
 
-    return randWord;//returns randWord to function
-}
-  var randomWord = pickRandomWord();
-  console.log(randomWord);
+    return randWord;
+  }
 
-// display underscore for each char in chosen randword
-   function underscoreDisplay (){
-     for(var i = 0; i < randomWord.length; i++){
-      var underscore = document.createElement('span'); //creates a span tag for each character in random word
-      underscore.textContent = '_'; //replace each char w/ _
-      randomWordsContainer.appendChild(underscore); //selects underscores class and sends each span tag to dom to put underscores in
+  var currentWord = pickRandomWord();
+  console.log(currentWord)
+  var currentWordArray = currentWord.split('');
+  var password = new Array(currentWordArray.length)
+  var guessTotal = 0;
+
+  for (var i = 0; i < password.length; i++) {
+    password[i] = "_" + " ";
+  }
+
+  function hideLetters() {
+    for (var i = 0; i < password.length; i++){
+      var guessField = document.getElementById("guess-field");
+      var underscores = document.createTextNode(password[i]);
+      guessField.appendChild(underscores);
     }
   }
 
-//display number of turns remaining
-var guessTotal = 8;
-function guessesRemaining() {
-  guessTotal -= 1;//counts guess total down by 1
-  numGuesses.textContent = guessTotal; //sets text content of num-guesses to guessTotal
-//when total guesses  is zero, selects guesses text content and displays game over
-    if(guessTotal == 0) {
-      guesses.textContent = "GAME OVER!";
+  var checkGuess = function() {
+    var guessedLetter = document.querySelector(".guessed-letter").value;
+    guessedLetter = guessedLetter.toLowerCase();
+    for (var i = 0; i < currentWordArray.length; i++) {
+      if (currentWordArray[i] === guessedLetter) {
+        password[i] = guessedLetter + " ";
+        var correct = true;
+      }
+      document.querySelector(".guessed-letter").value = "";
     }
-}
 
-//hook up event listener to get guess and change the guess total
-guessButton.addEventListener('click', function() {
-  guessesRemaining();//calls guessesRemaining function to decrease guess total
-});
+    var guessField = document.getElementById("guess-field");
+    guessField.innerHTML = "";
+    hideLetters();
+
+    if(!correct) {
+      var guessedLetters = document.getElementById("guessed-letters");
+      var letter = document.createTextNode(" " + guessedLetter);
+      guessedLetters.appendChild(letter);
+      guessTotal++
+      var hangman = document.querySelector(".hangman-scaffold");
+      hangman.src = "http://www.writteninpencil.de/Projekte/Hangman/hangman" + guessTotal + ".png";
+    }
+
+    var gameOver = true;
+    for (var i = 0; i < password.length; i++) {
+      if (password[i] === "_" + " ") {
+          gameOver = false;
+      }
+    }
+
+    if(gameOver){
+      alert("You Win!")
+    }
+
+    if(guessTotal === 8){
+      alert("Game Over!")
+    }
+  }
+
+  function startGame() {
+    hideLetters();
+  }
+
+  startGame();
+
+  //hook up event listener to get guess and change the guess total
+  document.getElementById('guess-button').addEventListener('click', function() {
+    checkGuess();
+  });
 
 })();

@@ -8,25 +8,33 @@ span {
 
 }
 
-.guesses {
+.title {
+  margin-top: 100px;
+}
+
+.guesses-left-sec {
   text-align: center;
 }
 
-.random-words {
-  font-size: 50px;
-  padding-left: 535px;
-}
-
-.random-word-container {
-  margin-bottom: 20px;
-}
-
-.input-area{
-  text-align: center;
+.main-sec {
   margin-top: 30px;
 }
 
-.container-title {
+.guessed-letters-sec {
   text-align: center;
+}
+
+.guessed-letters-contain{
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.guess-field-contain {
+  text-align: center;
+}
+
+.guess-contain {
   margin-top: 20px;
+  text-align: center;
 }

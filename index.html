@@ -3,41 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>Word Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <h1>Hang Man</h1>
 
   <div class = "container">
-    <div class="side-container">
-      <div class="guesses">Guesses Remaining: <span id="numGuesses">8</span>
-      </div>
-        <div class="input-area">
-          <div class="random-word-container">
-
-          </div>
-          <input class="letter" max-length="1" type="text" placeholder="Guess A Letter">
-          <input id="guessButton" class="guess" type="submit" name="guess" value="Guess">
-
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="title">
+          <h1>Hangman</h1>
         </div>
-      </div>
 
-      <div class="side-container">
-        <div class="container-title">Guessed Letters</div>
-          <div id="wrong-letters" class="input-area">
+        <section class="guesses-left-sec">
+          <img src="http://www.writteninpencil.de/Projekte/Hangman/hangman0.png" class="hangman-scaffold"><br />
+        </section>
 
+        <section class="clearfix guessed-letters-sec">
+          <div class="col-xs-4 col-xs-offset-4 guessed-letters-contain">
+            <label>Guessed Letters:</label>
+            <span id="guessed-letters"></span>
           </div>
-        </div>
+        </section>
+
+        <section class="main-sec">
+          <div class="guess-field-contain">
+            <span id="guess-field"></span>
+          </div>
+          <div class="guess-contain">
+            <input class="guessed-letter" max-length="1" type="text" placeholder="Guess A Letter">
+            <input id="guess-button" class="btn btn-success guess" type="button" value="Guess">
+          </div>
+        </section>
+
       </div>
-
-    <!-- </div>
-
-
     </div>
-
-    <ul id="letters"></ul>
-    <p id="man"></p>
-    <p id="output" class="output"></p> -->
+  </div>
 
     <script type="text/javascript" src="common-words.js"> </script>
     <script type="text/javascript"  src="main.js"></script>
